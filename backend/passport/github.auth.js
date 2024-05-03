@@ -61,8 +61,6 @@ passport.use(
 				return done(null, false, { message: 'Google authentication failed' });
 			  }
 			console.log("google profile:",profile);
-			console.log("Access token:", accessToken);
-			console.log("Refresh token:", refreshToken);
 
 			const user = await User.findOne({ username: profile.username });
 			// signup
@@ -77,10 +75,10 @@ passport.use(
 				});
 				console.error(arguments);
 				await newUser.save();
-				//return done(null, newUser);
-				return done(null, profile);
+				done(null, newUser);
+				//done(null, profile);
 			} else {
-				return done(null, User);
+				done(null, user);
 			}
 		}
 	)
