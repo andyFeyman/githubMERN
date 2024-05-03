@@ -23,7 +23,7 @@ passport.use(
 		{
 			clientID: process.env.GITHUB_CLIENT_ID,
 			clientSecret: process.env.GITHUB_CLIENT_SECRET,
-			callbackURL: "http://localhost:5001/api/auth/github/callback",
+			callbackURL: "https://githubmern.onrender.com/api/auth/github/callback",
 		},
 		async function (accessToken, refreshToken, profile, done) {
 			const user = await User.findOne({ username: profile.username });
@@ -54,7 +54,7 @@ passport.use(
 		{
 			clientID: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-			callbackURL: 'http://localhost:5001/api/auth/google/callback',
+			callbackURL: 'https://githubmern.onrender.com/api/auth/google/callback',
 		},
 		async function (accessToken, refreshToken, profile, done) {
 			if (!profile) {
