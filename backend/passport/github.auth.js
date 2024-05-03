@@ -62,7 +62,7 @@ passport.use(
 			  }
 			console.log("google profile:",profile);
 
-			const user = await User.findOne({ username: profile.username });
+			const user = await User.findOne({ username: profile.displayName });
 			// signup
 			if (!user) {
 				const newUser = new User({
