@@ -13,6 +13,9 @@ const HomePage = () => {
 	const [loading, setLoading] = useState(false);
 
 	const [sortType, setSortType] = useState("recent");
+	//分页pagination
+	const [currentPage, setCurrentPage] = useState(1);
+	const [reposPerPage, setReposPerPage] = useState(10);
 
 	//使用 useCallback() 可以确保 getUserProfileAndRepos 函数只在需要时才重新创建,避免了不必要的重新渲染,从而提高了组件的性能。
 	const getUserProfileAndRepos = useCallback(async (username = "lkj") => {
