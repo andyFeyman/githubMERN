@@ -1,4 +1,4 @@
-const InscriptionList = ({inscriptions})=>{
+const InscriptionList = ()=>{
 
     return (
 
@@ -29,7 +29,7 @@ const InscriptionList = ({inscriptions})=>{
                 </li>
             </ul>
         </div>
-    )
+    );
 }
 
 export default InscriptionList;

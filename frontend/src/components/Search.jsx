@@ -33,7 +33,7 @@ const Search = ({ onSearch }) => {
 	);
 };
 
-const InscriptionSearch = ({ onSearch }) => {
+const InscriptionSearch = ( {onSearch} ) => {
 	const [address, setAddress] = useState("");
 
 	return (
@@ -65,4 +65,4 @@ const InscriptionSearch = ({ onSearch }) => {
 	);
 };
 
-export default {Search, InscriptionSearch};
+export default {Search,InscriptionSearch};
