@@ -40,7 +40,8 @@ const userSchema = new mongoose.Schema(
 		userEmail:{
 			type:String,
 			require:true,
-			default:""
+			maxlength:30,
+			default:"Null"
 		}
 	},
 	{ timestamps: true }
