@@ -13,11 +13,10 @@ const HomePage = () => {
 	const [loading, setLoading] = useState(false);
 
 	const [sortType, setSortType] = useState("recent");
-	//分页pagination
-	const [currentPage, setCurrentPage] = useState(1);
-	const [reposPerPage, setReposPerPage] = useState(10);
 
-	//使用 useCallback() 可以确保 getUserProfileAndRepos 函数只在需要时才重新创建,避免了不必要的重新渲染,从而提高了组件的性能。
+
+	
+	//使用 useCallback()，第二参数空白[], 目的是首次
 	const getUserProfileAndRepos = useCallback(async (username = "lkj") => {
 		setLoading(true);
 		try {
@@ -35,7 +34,7 @@ const HomePage = () => {
 		} finally {
 			setLoading(false);
 		}
-	}, []);
+	}, []);// empty dependency array means it runs only once
 
 	//useEffect() 确保了在组件首次渲染时,就会获取用户信息和仓库列表。
 	//将 getUserProfileAndRepos 作为 useEffect() 的依赖项,
@@ -84,7 +83,7 @@ const HomePage = () => {
 			<div className='flex gap-4 flex-col lg:flex-row justify-center items-start'>
 				{userProfile && !loading && <ProfileInfo userProfile={userProfile} />}
 
-				{!loading && <Repos repos={repos} />}
+				{!loading && <Repos repos={repos}/>}
 				{loading && <Spinner />}
 			</div>
 		</div>

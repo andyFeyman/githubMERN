@@ -6,9 +6,11 @@ import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
 import ExplorePage from "./pages/ExplorePage";
 import LikesPage from "./pages/LikesPage";
+import InscriptionPage from "./pages/InscriptionPage";
 
 import Sidebar from "./components/Sidebar";
 import { useAuthContext } from "./context/AuthContext";
+import InscriptionPage from "./pages/InscriptionPage";
 
 function App() {
 	const { authUser, loading } = useAuthContext();
@@ -26,6 +28,7 @@ function App() {
 					<Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to={"/"} />} />
 					<Route path='/explore' element={authUser ? <ExplorePage /> : <Navigate to={"/login"} />} />
 					<Route path='/likes' element={authUser ? <LikesPage /> : <Navigate to={"/login"} />} />
+					<Route path='/inscription' element={<InscriptionPage /> } />
 				</Routes>
 				<Toaster />
 			</div>

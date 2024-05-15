@@ -36,6 +36,7 @@ passport.use(
 					avatarUrl: profile.photos[0].value,
 					likedProfiles: [],
 					likedBy: [],
+					userEmail:profile.email
 				});
 				console.error(arguments);
 				await newUser.save();
@@ -72,6 +73,7 @@ passport.use(
 					avatarUrl: profile.photos[0].value,
 					likedProfiles: [],
 					likedBy: [],
+					userEmail:profile.emails[0].value
 				});
 				console.error(arguments);
 				await newUser.save();

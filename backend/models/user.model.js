@@ -37,6 +37,11 @@ const userSchema = new mongoose.Schema(
 				},
 			},
 		],
+		userEmail:{
+			type:String,
+			require:true,
+			default:""
+		}
 	},
 	{ timestamps: true }
 );

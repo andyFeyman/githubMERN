@@ -30,6 +30,8 @@ const Sidebar = () => {
 				>
 					<IoHomeSharp size={20} />
 				</Link>
+
+
 				{/* 在aside-nav-link之间插入{}来写判断逻辑，&&逻辑符号，意味着需要登陆的用户才能看到进一步的内容 */}
 				{authUser && (
 					<Link
@@ -48,6 +50,16 @@ const Sidebar = () => {
 						<MdOutlineExplore size={25} />
 					</Link>
 				)}
+	
+				{!authUser && (
+					<Link
+						to='/inscription'
+						className='p-1.5 focus:outline-nones transition-colors duration-200 rounded-lg hover:bg-gray-800'
+					>
+						<IoHomeSharp size={25} />
+					</Link>
+				)}
+
 
 				{!authUser && (
 					<Link
