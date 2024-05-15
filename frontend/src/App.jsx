@@ -10,7 +10,6 @@ import InscriptionPage from "./pages/InscriptionPage";
 
 import Sidebar from "./components/Sidebar";
 import { useAuthContext } from "./context/AuthContext";
-import InscriptionPage from "./pages/InscriptionPage";
 
 function App() {
 	const { authUser, loading } = useAuthContext();
