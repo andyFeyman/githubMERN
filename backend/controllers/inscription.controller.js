@@ -6,11 +6,11 @@ export const getInscpts = async (req,res) => {
         const respone = await fetch(`https://turbo.ordinalswallet.com/wallet/${address}`,
         
         )
-        const inscptsData = await respone.json()
-        res.status(200).json({inscptsListOfAddress:inscptsData.inscriptions})
+        const inscptsData = await respone.json();
+        res.status(200).json({inscptsData});
 
     } catch (error) {
-        res.status(500).json({error:error.message})
+        res.status(500).json({error:error.message});
     }
 }
 

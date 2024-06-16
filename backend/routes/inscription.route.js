@@ -3,7 +3,7 @@ import { getInscpts } from "../controllers/inscription.controller.js";
 
 const router = express.Router();
 
-router.post("/getInscpts/:address",getInscpts);
+router.get("/getInscpts/:address",getInscpts);
 //router.get("/likes", ensureAuthenticated, getLikes);
 
 
