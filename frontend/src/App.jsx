@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import ExplorePage from "./pages/ExplorePage";
 import LikesPage from "./pages/LikesPage";
 import InscriptionPage from "./pages/InscriptionPage";
+import InsDetailPage from "./pages/insDetailPage";
 
 import Sidebar from "./components/Sidebar";
 import { useAuthContext } from "./context/AuthContext";
@@ -28,6 +29,7 @@ function App() {
 					<Route path='/explore' element={authUser ? <ExplorePage /> : <Navigate to={"/login"} />} />
 					<Route path='/likes' element={authUser ? <LikesPage /> : <Navigate to={"/login"} />} />
 					<Route path='/inscription' element={<InscriptionPage /> } />
+					<Route path='/detailPage/:id' element={<InsDetailPage /> } />
 				</Routes>
 				<Toaster />
 			</div>

@@ -84,6 +84,15 @@ const Sidebar = () => {
 						<Logout />
 					</div>
 				)}
+
+				{!authUser && (
+					<Link
+						to='/detailPage'
+						className='p-1.5 focus:outline-nones transition-colors duration-200 rounded-lg hover:bg-gray-800'
+					>
+						<IoHomeSharp size={25} />
+					</Link>
+				)}
 			</nav>
 		</aside>
 	);

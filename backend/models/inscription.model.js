@@ -1,5 +1,7 @@
 import mongoose from "mongoose"
 
+const { Schema } = mongoose;
+
 const inscriptionSchema = new mongoose.Schema({
     chainType:{
         type: String,
@@ -24,23 +26,7 @@ const inscriptionSchema = new mongoose.Schema({
         type:String
     },
     insComments:[
-        {
-            addTime:{
-                type:Date,
-                require:true,
-                default:Date.now
-            },
-            content:{
-                type:String,
-                require:true,
-                maxlength:2000,
-                default:""
-            },
-            byWho:{
-                type:String,
-                require:true
-            }
-        }
+        {type:Schema.Types.ObjectId,ref:'Comments'}
     ]
   
 

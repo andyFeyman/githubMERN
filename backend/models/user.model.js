@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+const { Schema } = mongoose;
 const userSchema = new mongoose.Schema(
 	{
 		username: {
@@ -22,6 +23,7 @@ const userSchema = new mongoose.Schema(
 			type: [String],
 			default: [],
 		},
+
 		likedBy: [
 			{
 				username: {
@@ -42,7 +44,8 @@ const userSchema = new mongoose.Schema(
 			require:true,
 			maxlength:30,
 			default:"Null"
-		}
+		},
+		comments:[{type:Schema.Types.ObjectId,ref:'Comments'}]
 	},
 	{ timestamps: true }
 );

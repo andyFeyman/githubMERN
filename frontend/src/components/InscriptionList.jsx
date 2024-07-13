@@ -1,4 +1,5 @@
 import  { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const InscriptionList = ({inscptList})=>{
 
@@ -6,6 +7,8 @@ const InscriptionList = ({inscptList})=>{
     const [loadItems,setLoadItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(50);
+
+    const navigate = useNavigate();
 
     const imgBaseURL = "https://ordinals.com/content/";
 
@@ -40,6 +43,11 @@ const InscriptionList = ({inscptList})=>{
         };
         fetchItems();
       }, [inscptList,currentPage]); 
+
+    //handle history push  
+    const handleInscptClick = (id)=>{
+        navigate(`/detailPage/${id}`)
+    };
     
     //前端分页逻辑
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -50,7 +58,7 @@ const InscriptionList = ({inscptList})=>{
         
     }
 
-      // Logging the values for debugging
+    // Logging the values for debugging
     // console.log('inscptList.length:', inscptList.length);
     // console.log('loadItems.length:', loadItems.length);
 
@@ -61,9 +69,9 @@ const InscriptionList = ({inscptList})=>{
                 {currentItems.map((inscptItem)=>(
                     <div className='border w-44 h-52' key={inscptItem.id}>
                         <div className='size-3/4'>
-                            <a href={imgBaseURL+inscptItem.id} >
+                            <a onClick={()=>handleInscptClick(inscptItem.id)} >
                                 {
-                                    inscptItem.content_type === "image/png"
+                                    inscptItem.content_type.includes( "image" )
                                     ?
                                     <img
                                         className='w-full h-full'

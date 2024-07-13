@@ -32,7 +32,7 @@ const InscriptionPage = () =>{
             }
         },[]
     ); 
-
+    
     useEffect(()=>{getInscptList()},[getInscptList]);
 
     const onSearch = async (e, address) => {
@@ -65,3 +65,4 @@ const InscriptionPage = () =>{
 
 
 export default InscriptionPage;
+

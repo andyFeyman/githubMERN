@@ -34,3 +34,9 @@ body {
 		hover:bg-gray-600/10 border border-gray-800 text-green-600;
 	}
 }
+
+
+.group:hover .tooltip {
+	opacity: 0.5;
+	visibility: visible;
+}

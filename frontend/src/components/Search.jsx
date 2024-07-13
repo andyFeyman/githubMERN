@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 
 export const Search = ({ onSearch }) => {
-	const [username, setUsername] = useState("");
+	const [username, setUsername] = useState("lava");
 
 	return (
 		<form className='max-w-xl mx-auto p-2 lg:sticky' onSubmit={(e) => onSearch(e, username)}>
