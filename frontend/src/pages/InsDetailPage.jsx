@@ -71,11 +71,12 @@ const InsDetailPage = () => {
                         </div>
                         
                         <div className="flex items-center justify-between text-sm text-gray-400">
+                            <button className="text-purple-400">Add a reply!</button>
                             <div className="flex space-x-4">
                                 <span>▲ 7</span>
                                 <span>💬 127</span>
                             </div>
-                            <button className="text-purple-400">Add a reply!</button>
+                            
                         </div>
                     </div>
                     <div className="space-y-4">

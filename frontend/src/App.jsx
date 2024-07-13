@@ -7,7 +7,8 @@ import HomePage from "./pages/HomePage";
 import ExplorePage from "./pages/ExplorePage";
 import LikesPage from "./pages/LikesPage";
 import InscriptionPage from "./pages/InscriptionPage";
-import InsDetailPage from "./pages/insDetailPage";
+import InsDetailPage from "./pages/InsDetailPage";
+
 
 import Sidebar from "./components/Sidebar";
 import { useAuthContext } from "./context/AuthContext";
