@@ -5,6 +5,7 @@ import Spinner from "../components/Spinner";
 import { timeStampFormatter } from "../utils/functions"
 import ReplyDialog from "../components/ReplyModule";
 import { useAuthContext } from "../context/AuthContext";
+import { useNavigate } from 'react-router-dom';
 
 const InsDetailPage = () => {
 
@@ -23,6 +24,7 @@ const InsDetailPage = () => {
 
     const [showDialog, setShowDialog] = useState(false);
 
+    const navigate = useNavigate();
 
     const getInscptDetail = useCallback(async () => {
         setLoading(true);
@@ -60,7 +62,14 @@ const InsDetailPage = () => {
     }, [getInscptDetail]);
 
     const handleDialogOpen = ()=>{
-        setShowDialog(true)
+        if(authUser){
+            setShowDialog(true);
+        }else{
+            toast.error("this function need Login to use!");
+            console.log("this function need Login to use!");
+            navigate("/login");
+        }
+        
     }
 
     const handleDialogClose = ()=>{
@@ -85,10 +94,11 @@ const InsDetailPage = () => {
                         </div>
                         
                         <div className="flex items-center justify-between text-sm text-gray-400">
-                        
-                            {authUser && <button className="text-purple-400" onClick={handleDialogOpen}>Add a reply!</button>}    
+
+                            <button className="text-purple-400" onClick={handleDialogOpen}>Add a reply!</button>  
                             
-                            {authUser && <ReplyDialog isOpen={showDialog} onClose={handleDialogClose}/>}
+                            <ReplyDialog isOpen={showDialog} onClose={handleDialogClose}/>
+
                             <div className="flex space-x-4">
                                 <span>▲ 7</span>
                                 <span>💬 127</span>
