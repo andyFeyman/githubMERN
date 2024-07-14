@@ -1,5 +1,7 @@
 import User from "../models/user.model.js";
+import Comments from "../models/comments.model.js";
 
+// get  inscriptions from  Address
 export const getInscpts = async (req,res) => {
     console.log(req.params);
     const { address } = req.params;
@@ -35,7 +37,8 @@ export const getDetail =async (req,res) =>{
 export const addComments =async(req,res)=>{
     try {
         const user = await User.findById(req.user._id.toString());
-        //const 
+        const {insptId, content} = req.body;
+        console.log({insptId, content} );
 
     } catch (error) {
         

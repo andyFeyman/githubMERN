@@ -3,8 +3,12 @@ import { useParams } from 'react-router-dom';
 import toast from "react-hot-toast";
 import Spinner from "../components/Spinner";
 import { timeStampFormatter } from "../utils/functions"
+import ReplyDialog from "../components/ReplyModule";
+import { useAuthContext } from "../context/AuthContext";
 
 const InsDetailPage = () => {
+
+    const {authUser} = useAuthContext();
     const [loading, setLoading] = useState(false);
 
     const { id } = useParams();
@@ -16,6 +20,8 @@ const InsDetailPage = () => {
     const [contentType, setContentType] = useState();
     const [createdTime,setCreatedTime] = useState();
     const [preContent, setPreContent] = useState();
+
+    const [showDialog, setShowDialog] = useState(false);
 
 
     const getInscptDetail = useCallback(async () => {
@@ -53,6 +59,14 @@ const InsDetailPage = () => {
         getInscptDetail();
     }, [getInscptDetail]);
 
+    const handleDialogOpen = ()=>{
+        setShowDialog(true)
+    }
+
+    const handleDialogClose = ()=>{
+        setShowDialog(false)
+    }
+
     return (
         <div>
             <main className="container mx-auto mt-8 flex">
@@ -71,7 +85,10 @@ const InsDetailPage = () => {
                         </div>
                         
                         <div className="flex items-center justify-between text-sm text-gray-400">
-                            <button className="text-purple-400">Add a reply!</button>
+                        
+                            {authUser && <button className="text-purple-400" onClick={handleDialogOpen}>Add a reply!</button>}    
+                            
+                            {authUser && <ReplyDialog isOpen={showDialog} onClose={handleDialogClose}/>}
                             <div className="flex space-x-4">
                                 <span>▲ 7</span>
                                 <span>💬 127</span>

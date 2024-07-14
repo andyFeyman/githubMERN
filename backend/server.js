@@ -5,6 +5,7 @@ import https from 'https';
 import passport from "passport";
 import session from "express-session";
 import path from "path";
+import bodyParser from "body-parser";
 
 import "./passport/github.auth.js";
 
@@ -28,6 +29,9 @@ app.use(session({ secret: "keyboard cat", resave: false, saveUninitialized: fals
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(bodyParser.json());//它会解析 Content-Type 为 application/json 的请求。
+app.use(bodyParser.urlencoded({ extended: true }));//{ extended: true } 选项允许解析复杂对象，如嵌套对象。
 
 // Here we can remove the cors, it's not necessary in production because the frontend and backend are on the same domain. I forgot to mention that in the video, sorry about that.🙄
 //app.use(cors());

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const { Schema } = mongoose;
+// const { Schema } = mongoose;
 const commentSchema = new mongoose.Schema(
     {	
         byWho:{
@@ -16,7 +16,7 @@ const commentSchema = new mongoose.Schema(
             default:Date.now,
         },
         commentContent:{
-            type:String,
+            type: String,
             maxlength:416,
             require:true
         },
@@ -26,7 +26,7 @@ const commentSchema = new mongoose.Schema(
                     type:Schema.Types.ObjectId,ref:'User'
                 },
                 content:{
-                    tyep:String,
+                    type: String,
                     maxlength:416,
                 },
                 replyTime:{
