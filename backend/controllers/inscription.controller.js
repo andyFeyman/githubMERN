@@ -62,7 +62,8 @@ export const addComment =async(req,res)=>{
 // show comments
 
 export const getAllComments = async(req,res)=>{
-    const insptId = req.params;
+    // 这里必须用{}才能取到值，不然是个对象
+    const {insptId} = req.params;
     try {
         const commentsList = await Comments.find({
             inscriptionId:insptId,
