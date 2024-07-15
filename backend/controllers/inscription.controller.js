@@ -37,14 +37,16 @@ export const getDetail =async (req,res) =>{
 export const addComments =async(req,res)=>{
     try {
         const user = await User.findById(req.user._id.toString());
-        const {insptId, content} = req.body;
-        console.log({insptId, content} );
-
+        const {content, inscriptionId} = req.body;
+        console.log({content, inscriptionId});
+        console.log("this is userId: "+user);
+        res.status(200).json({message:"got the antribu from front"});
     } catch (error) {
-        
+        res.status(500).json({error:error.message});
     }
 
 }
+
 
 
 // update comments

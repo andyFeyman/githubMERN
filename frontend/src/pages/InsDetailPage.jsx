@@ -97,7 +97,7 @@ const InsDetailPage = () => {
 
                             <button className="text-purple-400" onClick={handleDialogOpen}>Add a reply!</button>  
                             
-                            <ReplyDialog isOpen={showDialog} onClose={handleDialogClose}/>
+                            <ReplyDialog isOpen={showDialog} onClose={handleDialogClose} inScptId={inscptId}/>
 
                             <div className="flex space-x-4">
                                 <span>▲ 7</span>

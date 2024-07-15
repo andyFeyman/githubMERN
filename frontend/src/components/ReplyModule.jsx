@@ -1,7 +1,7 @@
 import React, {useState} from "react";
+import toast from "react-hot-toast";
 
-
-const ReplyDialog = ({isOpen, onClose})=>{
+const ReplyDialog = ({isOpen, onClose,inScptId})=>{
     const [replyText,setReplyText] = useState("");
 
     //event事件必须传参进来
@@ -11,6 +11,28 @@ const ReplyDialog = ({isOpen, onClose})=>{
 
     const handleReplySubmit = async()=>{
         console.log("testing now");
+    
+        try {
+            const response = await fetch('/api/inscpt/addComment',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({content: replyText, inscriptionId: inScptId}),
+            });
+            if (response.ok) {
+                // 处理成功响应，例如关闭对话框、更新评论列表等
+                onClose();
+                console.log('Reply submitted successfully!');
+              } else {
+                console.error('Error submitting reply:', response.statusText);
+              }
+
+        } catch (error) {
+            toast.error(error.message);
+        }
+
+
     }
 
     return(
