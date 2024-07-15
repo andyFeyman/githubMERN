@@ -34,7 +34,7 @@ export const getDetail =async (req,res) =>{
 }
 
 // add comments
-export const addComments =async(req,res)=>{
+export const addComment =async(req,res)=>{
     try {
         const user = await User.findById(req.user._id.toString());
         const {content, inscriptionId} = req.body;
