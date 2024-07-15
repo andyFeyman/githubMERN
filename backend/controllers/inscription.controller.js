@@ -33,20 +33,52 @@ export const getDetail =async (req,res) =>{
     }
 }
 
-// add comments
+// add comment
 export const addComment =async(req,res)=>{
     try {
         const user = await User.findById(req.user._id.toString());
+        const username = user.username;
         const {content, inscriptionId} = req.body;
+        //写入MongoDB
+        const newComment = new Comments({
+            byWho: user,
+            inscriptionId: inscriptionId,
+            commentContent: content
+        })
+
+        await newComment.save();
+
         console.log({content, inscriptionId});
         console.log("this is userId: "+user);
-        res.status(200).json({message:"got the antribu from front"});
+        res.status(200).json({message:"a new commenteddata saved by: "+username});
+
+
     } catch (error) {
         res.status(500).json({error:error.message});
     }
 
 }
 
+// show comments
+
+export const getAllComments = async(req,res)=>{
+    const insptId = req.params;
+    try {
+        const commentsList = await Comments.find({
+            inscriptionId:insptId,
+        })
+        if(commentsList){
+            res.status(200).json({comments:commentsList})
+        }else{
+            res.status(404).json({message:"there are 0 comments"})
+        }
+        
+    } catch (error) {
+        res.status(500).json({error:error.message});
+    }
+
+
+}
 
 
 // update comments

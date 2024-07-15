@@ -47,6 +47,10 @@ const InsDetailPage = () => {
             }else{
                 console.log("this inscription is not text");
             }
+
+            const replyRespone = await fetch(`/api/inscpt/getAllComments/${inscptId}`);
+            
+            console.log("this is replies: "+replyRespone);
            
             setLoading(false);
         } catch (error) {
