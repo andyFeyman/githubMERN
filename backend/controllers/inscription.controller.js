@@ -67,7 +67,8 @@ export const getAllComments = async(req,res)=>{
     try {
         const commentsList = await Comments.find({
             inscriptionId:insptId,
-        })
+        }).exec();
+        
         if(commentsList){
             res.status(200).json({comments:commentsList})
         }else{
