@@ -63,11 +63,11 @@ export const addComment =async(req,res)=>{
 
 export const getAllComments = async(req,res)=>{
     // 这里必须用{}才能取到值，不然是个对象
-    const {insptId} = req.params;
-    console.log('type:', typeof insptId, 'insptId is: ',insptId);
+    const {inscptId} = req.params;
+    console.log('type:', typeof inscptId, 'insptId is: ',inscptId);
     try {
         const commentsList = await Comments.find({
-            inscriptionId:insptId.toString(),// inscriptionId是字符类型,toString()
+            inscriptionId:inscptId.toString(),// inscriptionId是字符类型,toString()
         }).exec();
 
         console.log(commentsList);
