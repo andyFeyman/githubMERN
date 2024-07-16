@@ -49,7 +49,7 @@ export const addComment =async(req,res)=>{
         await newComment.save();
 
         console.log({content, inscriptionId});
-        console.log("this is userId: "+user);
+        //console.log("this is userId: "+user);
         res.status(200).json({message:"a new commenteddata saved by: "+username});
 
 
@@ -68,15 +68,18 @@ export const getAllComments = async(req,res)=>{
         const commentsList = await Comments.find({
             inscriptionId:insptId,
         }).exec();
-        
-        if(commentsList){
-            res.status(200).json({comments:commentsList})
+
+        console.log(commentsList);
+        console.log("the type : "+ typeof commentsList);
+
+        if(commentsList.length > 0){
+            res.status(200).send(commentsList);
         }else{
             res.status(404).json({message:"there are 0 comments"})
         }
         
     } catch (error) {
-        res.status(500).json({error:error.message});
+        res.status(500).json({error:error.message});    
     }
 
 
