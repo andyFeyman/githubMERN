@@ -64,7 +64,7 @@ export const addComment =async(req,res)=>{
 export const getAllComments = async(req,res)=>{
     // 这里必须用{}才能取到值，不然是个对象
     const {insptId} = req.params;
-    console.log(insptId);
+    console.log('type:', typeof insptId, 'insptId is: ',insptId);
     try {
         const commentsList = await Comments.find({
             inscriptionId:insptId.toString(),// inscriptionId是字符类型,toString()
