@@ -4,8 +4,10 @@ import toast from "react-hot-toast";
 import Spinner from "../components/Spinner";
 import { timeStampFormatter } from "../utils/functions"
 import ReplyDialog from "../components/ReplyModule";
+import { CommentsBlock } from "../components/CommentsBlock";
 import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
+
 
 const InsDetailPage = () => {
 
@@ -24,6 +26,8 @@ const InsDetailPage = () => {
 
     const [showDialog, setShowDialog] = useState(false);
 
+    const [commentList,setCommentList] = useState([]);
+
     const navigate = useNavigate();
 
     const getInscptDetail = useCallback(async () => {
@@ -37,9 +41,7 @@ const InsDetailPage = () => {
             setInscptNum(inscptsDetail.num);
             setContentType(inscptsDetail.content_type);
             setCreatedTime(inscptsDetail.created);
-
-            console.log(typeof inscptsDetail.content_type === 'string');
-
+     
             if(inscptsDetail.content_type && inscptsDetail.content_type.includes("text")){
                 const preRes = await fetch(`https://ordinals.com/content/`+inscptsDetail.id);
                 const precontent = await preRes.text();
@@ -50,7 +52,7 @@ const InsDetailPage = () => {
 
             const replyRespone = await fetch(`/api/inscpt/getAllComments/${id}`);
             
-            console.log("this is replies: "+replyRespone);
+            setCommentList(replyRespone);
            
             setLoading(false);
         } catch (error) {
@@ -110,16 +112,9 @@ const InsDetailPage = () => {
                             
                         </div>
                     </div>
-                    <div className="space-y-4">
-                        <div className="flex items-start space-x-4">
-                            <div className="w-8 h-8 bg-yellow-500 rounded-full flex-shrink-0"></div>
-                            <div>
-                                <p className="font-bold">User Name <span className="text-gray-400 text-sm">• 2 days ago</span></p>
-                                <p>Comment text here</p>
-                                <button className="text-gray-400 text-sm">Reply</button>
-                            </div>
-                        </div>
-                    </div>
+                    <CommentsBlock commentList={commentList}/>
+ 
+
                 </div>
                 <div className="w-1/3">
                     <h2 className="text-2xl font-bold mb-4">INSCRIPTION</h2>

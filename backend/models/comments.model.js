@@ -6,6 +6,12 @@ const commentSchema = new mongoose.Schema(
         byWho:{
             type:Schema.Types.ObjectId,ref:'User'
         },
+        writerName:{
+            type: String,
+            require:true,
+            maxlength:20,
+            default:"Casey",
+        },
         inscriptionId:{
             type:String,
             require:true

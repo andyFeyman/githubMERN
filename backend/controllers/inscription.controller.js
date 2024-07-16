@@ -42,6 +42,7 @@ export const addComment =async(req,res)=>{
         //写入MongoDB
         const newComment = new Comments({
             byWho: user,
+            writerName: username,
             inscriptionId: inscriptionId,
             commentContent: content
         })
@@ -62,16 +63,12 @@ export const addComment =async(req,res)=>{
 // show comments
 
 export const getAllComments = async(req,res)=>{
-    // 这里必须用{}才能取到值，不然是个对象
+    // 这里必须用{params}才能取到值，不然是个对象. 这里要跟路由中：定义的名字保持一致。不然就是undefined
     const {inscptId} = req.params;
-    console.log('type:', typeof inscptId, 'insptId is: ',inscptId);
     try {
         const commentsList = await Comments.find({
-            inscriptionId:inscptId.toString(),// inscriptionId是字符类型,toString()
+            inscriptionId:inscptId.toString(),// 数据库中inscriptionId是字符类型,所以用toString();
         }).exec();
-
-        console.log(commentsList);
-        console.log("the type : "+ typeof commentsList);
 
         if(commentsList.length > 0){
             res.status(200).send(commentsList);
