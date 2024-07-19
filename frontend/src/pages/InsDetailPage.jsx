@@ -52,7 +52,8 @@ const InsDetailPage = () => {
 
             const replyRespone = await fetch(`/api/inscpt/getAllComments/${id}`);
             const replyData = await replyRespone.json();
-            setCommentList(replyData);
+            const reverseReplyData = replyData.reverse();
+            setCommentList(reverseReplyData);
            
             setLoading(false);
         } catch (error) {
@@ -60,7 +61,7 @@ const InsDetailPage = () => {
         }finally{
             setLoading(false);
         }
-    }, [id]);
+    }, [id,commentList]);
 
 
     useEffect(() => {

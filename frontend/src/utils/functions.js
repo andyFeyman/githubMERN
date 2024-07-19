@@ -60,3 +60,21 @@ export function timeStampFormatter(timestamp) {
   };
   
   
+export function daysSinceDate(date) {
+    // 创建日期对象
+    const givenDate = new Date(date);
+    const today = new Date();
+    
+    // 确保输入的日期是有效的
+    if (isNaN(givenDate.getTime())) {
+        return "Invalid date";
+    }
+    
+    // 计算毫秒差
+    const timeDiff = today.getTime() - givenDate.getTime();
+    
+    // 转换为天数并向下取整
+    const dayDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+    
+    return dayDiff;
+}
