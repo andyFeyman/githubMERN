@@ -13,7 +13,7 @@ const CommentsBlock = ({ commentList }) => {
           <div key={item._id} className="flex items-start space-x-4">
             <div className="w-8 h-8 bg-yellow-500 rounded-full flex-shrink-0"></div>
             <div>
-              <p className="font-bold">{item.writerName} <span className="text-gray-400 text-sm">{daysSinceDate(updatedAt)}</span></p>
+              <p className="font-bold">{item.writerName} <span className="text-gray-400 text-sm">{daysSinceDate(item.updatedAt)}</span></p>
               <p>{item.commentContent}</p>
               <button className="text-gray-400 text-sm">Reply</button>
               <button className="text-gray-400 text-sm">edit</button>
