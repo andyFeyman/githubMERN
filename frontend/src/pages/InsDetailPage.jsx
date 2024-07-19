@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import Spinner from "../components/Spinner";
 import { timeStampFormatter } from "../utils/functions"
 import ReplyDialog from "../components/ReplyModule";
-import { CommentsBlock } from "../components/CommentsBlock";
+import  CommentsBlock  from "../components/CommentsBlock";
 import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
 
@@ -51,8 +51,8 @@ const InsDetailPage = () => {
             }
 
             const replyRespone = await fetch(`/api/inscpt/getAllComments/${id}`);
-            
-            setCommentList(replyRespone);
+            const replyData = await replyRespone.json();
+            setCommentList(replyData);
            
             setLoading(false);
         } catch (error) {
