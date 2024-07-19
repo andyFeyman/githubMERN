@@ -16,12 +16,8 @@ const InscriptionPage = () =>{
             try {
                 const res = await fetch(`/api/inscpt/getInscpts/${address}`);
                 const dataList = await res.json();
-               
-                // console.log('dataList:',dataList);
-                // console.log('typeof dataList:',typeof dataList);
-                // console.log(dataList.inscptsData.balance);
-                console.log(dataList.inscptsData.inscriptions.length);
-                console.log(dataList.inscptsData.inscriptions[0]);
+                // console.log(dataList.inscptsData.inscriptions.length);
+                // console.log(dataList.inscptsData.inscriptions[0]);
                 setInscptList(dataList.inscptsData.inscriptions)
                 return {inscptList};
 
