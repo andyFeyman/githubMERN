@@ -1,5 +1,6 @@
 
 const CommentsBlock = ({ commentList }) => {
+
     if (!Array.isArray(commentList)) {
       return <div>Loading comments...</div>; // 或者其他适当的加载状态显示
     }
@@ -20,6 +21,6 @@ const CommentsBlock = ({ commentList }) => {
     );
   }
 
-s
+
 export default CommentsBlock;
 
