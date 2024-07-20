@@ -41,6 +41,7 @@ const InsDetailPage = () => {
             setInscptNum(inscptsDetail.num);
             setContentType(inscptsDetail.content_type);
             setCreatedTime(inscptsDetail.created);
+            console.log("render times counting");
      
             if(inscptsDetail.content_type && inscptsDetail.content_type.includes("text")){
                 const preRes = await fetch(`https://ordinals.com/content/`+inscptsDetail.id);
@@ -66,7 +67,7 @@ const InsDetailPage = () => {
 
     useEffect(() => {
         getInscptDetail();
-    }, []);
+    }, [getInscptDetail]);
 
     const handleDialogOpen = ()=>{
         if(authUser){
