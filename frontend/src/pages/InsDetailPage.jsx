@@ -66,7 +66,7 @@ const InsDetailPage = () => {
 
     useEffect(() => {
         getInscptDetail();
-    }, [getInscptDetail]);
+    }, []);
 
     const handleDialogOpen = ()=>{
         if(authUser){
@@ -117,7 +117,7 @@ const InsDetailPage = () => {
  
 
                 </div>
-                <div className="w-1/3">
+                <div className="w-1/3 fixed top-4 right-4 h-screen p-4">
                     <h2 className="text-2xl font-bold mb-4">INSCRIPTION</h2>
                     <h1 className="text-4xl font-bold mb-4">{"# "+inscptNum}</h1>
                     <div className="bg-gray-800 rounded-lg p-4 space-y-4">
