@@ -51,23 +51,35 @@ const InsDetailPage = () => {
                 console.log("this inscription is not text");
             }
 
-            const replyRespone = await fetch(`/api/inscpt/getAllComments/${id}`);
-            const replyData = await replyRespone.json();
-            const reverseReplyData = replyData.reverse();
-            setCommentList(reverseReplyData);
-           
-            setLoading(false);
         } catch (error) {
             toast.error(error.message);
         }finally{
             setLoading(false);
         }
-    }, [id,commentList]);
-
+    }, [id]);
 
     useEffect(() => {
         getInscptDetail();
     }, [getInscptDetail]);
+
+    const getCommentsList = useCallback(async()=>{
+        setLoading(true);
+        try {
+            const replyRespone = await fetch(`/api/inscpt/getAllComments/${id}`);
+            const replyData = await replyRespone.json();
+            const reverseReplyData = replyData.reverse();
+            setCommentList(reverseReplyData);
+
+        } catch (error) {
+            toast.error(error.message);
+        }finally{
+            setLoading(false);
+        }
+    },[id])
+
+    useEffect(()=>{
+        getCommentsList();
+    },[getCommentsList]);
 
     const handleDialogOpen = ()=>{
         if(authUser){
@@ -77,11 +89,11 @@ const InsDetailPage = () => {
             console.log("this function need Login to use!");
             navigate("/login");
         }
-        
     }
 
     const handleDialogClose = ()=>{
-        setShowDialog(false)
+        setShowDialog(false);
+        getCommentsList();
     }
 
     return (
