@@ -85,9 +85,91 @@ export const getAllComments = async(req,res)=>{
 
 
 // update comments
+export const updateComment =async (req,res)=>{
+    try {
+        const user = await User.findById(req.user._id.toString());
 
+        //console.log(user._id.toString());
+        
+
+        const {content, commentIdForUpdate} = req.body;
+
+        //console.log(req.body);
+
+        const comment = await Comments.findById(commentIdForUpdate);
+
+        //console.log(comment.byWho.toString());
+    
+    
+        if(comment.byWho.toString() !== user._id.toString()){
+            res.status(400).json({message:"this comment don't belong to you"});
+        }else{
+            await Comments.updateOne(comment,{commentContent:content});
+            res.status(200).json({message:"comment updated!"});
+        }
+    } catch (error) {
+        res.status(500).json({message:"something wrong:"+error});
+    }
+
+}
 
 
 // del comments
 
+export const delComment =async (req,res)=>{
 
+    try {
+        // 用{}才能获取到value 不然是个对象
+        const { commentId } =req.params;
+
+        console.log(typeof commentId);
+        
+        const comment = await Comments.findById(commentId);
+
+        console.log(comment.byWho);
+        
+        const user = await User.findById(req.user._id.toString());
+        console.log(user._id);
+        
+        if(comment.byWho.toString() !== user._id.toString()){
+            res.status(400).json({message:"this comment don't belong to you"});
+        }else{
+            await Comments.deleteOne(comment);
+           
+            res.status(200).json({message:"comment deleted!"});
+        }
+
+    } catch (error) {
+        res.status(500).json({error:error.message});  
+    }
+
+}
+
+
+// add reply of comments
+export const replyToComment =async (req,res) => {
+
+    try {
+        const user = await User.findById(req.user._id.toString());
+        console.log(user._id);
+
+        const {content,replyToComentId} = req.body;
+        console.log(content,replyToComentId);
+
+        const comment = await Comments.findById(replyToComentId);
+
+        comment.reply.push({
+            byWho:user,
+            content:content
+        });
+        
+        await comment.save();
+
+        res.status(200).json({message:"reply updated!"});
+
+        
+    } catch (error) {
+        res.status(500).json({error:error.message}); 
+    }
+
+};

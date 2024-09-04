@@ -12,6 +12,9 @@ import { useNavigate } from 'react-router-dom';
 const InsDetailPage = () => {
 
     const {authUser} = useAuthContext();
+    // const {username } =authUser;
+    // console.log("this is authUser info:"+username);
+    
     const [loading, setLoading] = useState(false);
 
     const { id } = useParams();
@@ -126,7 +129,7 @@ const InsDetailPage = () => {
                             
                         </div>
                     </div>
-                    <CommentsBlock commentList={commentList}/>
+                    <CommentsBlock commentList={commentList} authUser={authUser} updateFuntion={getCommentsList}/>
  
 
                 </div>

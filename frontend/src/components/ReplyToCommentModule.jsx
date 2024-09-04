@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import toast from "react-hot-toast";
 
-const ReplyDialog = ({isOpen, onClose,inScptId})=>{
+const ReplyToComent = ({onClose,replyId})=>{
+
     const [replyText,setReplyText] = useState("");
 
     //event事件必须传参进来
@@ -13,12 +14,12 @@ const ReplyDialog = ({isOpen, onClose,inScptId})=>{
         console.log("testing now");
         
         try {
-            const response = await fetch('/api/inscpt/addComment',{
+            const response = await fetch('/api/inscpt/replyToComment',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({content: replyText, inscriptionId: inScptId}),
+                body: JSON.stringify({content: replyText, replyToComentId: replyId}),
             });
             if (response.ok) {
                 // 处理成功响应，例如关闭对话框、更新评论列表等
@@ -36,14 +37,15 @@ const ReplyDialog = ({isOpen, onClose,inScptId})=>{
     }
 
     return(
-        <div className={`fixed inset-0 z-50 ${isOpen ? 'block' : 'hidden'}`}>
+        <div className="fixed inset-0 z-50">
             <div className="flex items-center justify-center h-screen">
                 <div className="bg-white rounded-lg p-8 shadow-md">
-                    <h2 className="text-xl font-bold mb-4">Add a Reply</h2>
+                    <h2 className="text-xl font-bold mb-4 text-black">Add a Reply</h2>
                     <textarea
-                        className="w-full border p-2 mb-4"
+                        className="w-full border p-2 mb-4 text-black"
                         value={replyText}
                         onChange={handleReplyChange}
+                        id={replyId}
                         placeholder="Enter your reply..."
                         rows={5}
                     />
@@ -67,4 +69,4 @@ const ReplyDialog = ({isOpen, onClose,inScptId})=>{
 
 
 
-export default ReplyDialog;
+export default ReplyToComent;

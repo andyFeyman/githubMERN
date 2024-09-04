@@ -1,0 +1,9 @@
+完善UpdateReply模块并适配inscription.controller.js中的updateComment逻辑：
+
+1. 在frontend/src/components/目录下创建UpdateReply.jsx文件
+2. 实现UpdateReply组件，包含表单和提交逻辑
+3. 在CommentsBlock.jsx中导入并使用UpdateReply组件
+4. 修改backend/controllers/inscription.controller.js中的updateComment函数，确保与前端逻辑匹配
+5. 测试更新评论功能
+
+请根据需求完成以上步骤。
